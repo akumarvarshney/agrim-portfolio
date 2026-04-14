@@ -1,0 +1,64 @@
+.projects-section {
+  padding: 100px 0;
+  min-height: 100vh;
+  background-color: var(--backgroundColor);
+  position: relative;
+  z-index: 5;
+}
+.projects-section h2 {
+  font-size: 70px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 80px;
+}
+.projects-section h2 span {
+  color: var(--accentColor);
+}
+.vibe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  perspective: 1000px;
+}
+.vibe-card {
+  background: rgba(40, 0, 0, 0.3);
+  border: 1px solid rgba(255, 32, 32, 0.2);
+  border-radius: 16px;
+  padding: 40px;
+  transition: all 0.4s ease;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+.vibe-card:hover {
+  border: 1px solid var(--accentColor);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(255, 32, 32, 0.2);
+}
+.vibe-card h3 {
+  font-size: 32px;
+  margin-bottom: 15px;
+  color: #fff;
+}
+.vibe-card p {
+  color: #adacac;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+.vibe-card span {
+  display: inline-block;
+  padding: 8px 16px;
+  background: rgba(255, 32, 32, 0.15);
+  color: var(--accentColor);
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+}
+@media (max-width: 768px) {
+  .vibe-grid { grid-template-columns: 1fr; }
+  .projects-section h2 { font-size: 50px; margin-top: 50px; }
+  .vibe-card { margin: 0 20px; }
+}
