@@ -53,7 +53,22 @@ const Scene = () => {
       let progress = setProgress((value) => setLoading(value));
       const { loadCharacter } = setCharacter(renderer, scene, camera);
 
+      // SAFETY TIMEOUT: If character takes too long (12s), force load to 100%
+      let characterLoaded = false;
+      const safetyTimeout = setTimeout(() => {
+        if (!characterLoaded) {
+          console.warn("Safety timeout triggered: Character took too long to load.");
+          progress.loaded().then(() => {
+            setTimeout(() => {
+              light.turnOnLights();
+            }, 1000);
+          });
+        }
+      }, 12000);
+
       loadCharacter().then((gltf) => {
+        characterLoaded = true;
+        clearTimeout(safetyTimeout);
         if (gltf) {
           const animations = setAnimations(gltf);
           hoverDivRef.current && animations.hover(gltf, hoverDivRef.current);
